@@ -23,27 +23,42 @@ return array(
 		'PatientTicketingModule'
 	),
 	'params' => array(
-			'menu_bar_items' => array(
-					'virtual_clinic' => array(
-							'api' => 'PatientTicketing',
-							'position' => 5
-					),
+		'menu_bar_items' => array(
+			'virtual_clinic' => array(
+				'api' => 'PatientTicketing',
+				'position' => 5
 			),
-			'admin_menu' => array(
-				'Clinic locations' => '/PatientTicketing/admin/clinicLocations',
-				'Queue Set Categories' => '/PatientTicketing/admin/queueSetCategories',
-				'Queue Sets' => '/PatientTicketing/admin/',
-				'Outcome Options' => '/PatientTicketing/admin/ticketAssignOutcomes'
+		),
+		'admin_menu' => array(
+			'Clinic locations' => '/PatientTicketing/admin/clinicLocations',
+			'Queue Set Categories' => '/PatientTicketing/admin/queueSetCategories',
+			'Queue Sets' => '/PatientTicketing/admin/',
+			'Outcome Options' => '/PatientTicketing/admin/ticketAssignOutcomes'
+		),
+		'patient_alert_widgets' => array(
+			array('class' => 'OEModule\PatientTicketing\widgets\PatientAlert'),
+		),
+		'additional_rulesets' => array(
+			array(
+				'namespace' => 'PatientTicketing',
+				'class' => 'OEModule\PatientTicketing\components\PatientTicketing_AuthRules'
 			),
-			'patient_alert_widgets' => array(
-				array('class' => 'OEModule\PatientTicketing\widgets\PatientAlert'),
-			),
-			'additional_rulesets' => array(
-				array(
-					'namespace' => 'PatientTicketing',
-					'class' => 'OEModule\PatientTicketing\components\PatientTicketing_AuthRules'
-				),
-			),
+		),
+		'follow_up_months' => array(
+			'1' => '1',
+			'2' => '2',
+			'3' => '3',
+			'4' => '4',
+			'5' => '5',
+			'6' => '6',
+			'7' => '7',
+			'8' => '8',
+			'9' => '9',
+			'10' => '10',
+			'11' => '11',
+			'12' => '12',
+			'18' => '18'
+		)
 	),
 	'components' => array(
 		'service' => array(
