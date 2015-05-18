@@ -36,7 +36,7 @@
 	<div class="large-<?= $this->data_width ?> column end">
 		<?php
 		$html_options = array('empty'=>'- Please select -', 'options' => array(), 'class'=>'inline');
-		echo CHtml::dropDownList($this->form_name . '[followup_quantity]', @$this->form_data[$this->form_name]['followup_quantity'], $this->getFollowUpQuantityOptions(), $html_options);
+		echo CHtml::dropDownList($this->form_name . '[followup_quantity]', @$this->form_data[$this->form_name]['followup_quantity'], Yii::app()->params['follow_up_months'], $html_options);
 		echo CHtml::dropDownList($this->form_name . '[followup_period]', @$this->form_data[$this->form_name]['followup_period'], CHtml::listData(\Period::model()->findAll(array('order'=>'display_order')),'name','name'), $html_options);
 		?>
 	</div>
