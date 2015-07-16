@@ -21,9 +21,11 @@
 <?php $this->renderPartial('//elements/form_errors', array('errors' => $errors, 'bottom' => false)); ?>
 <form>
 	<input type="hidden" name="YII_CSRF_TOKEN" value="<?= Yii::app()->request->csrfToken ?>" />
-	<?php if ($parent) {?>
+	<?php if ($parent) {
+    ?>
 		<input type="hidden" name="parent_id" value="<?=$parent->id?>" />
-	<?php }?>
+	<?php 
+}?>
 
 	<div>
 		<fieldset class="field-row row">
@@ -67,26 +69,26 @@
 			</div>
 		</fieldset>
 		<?php
-		$this->widget('application.widgets.MultiSelectList', array(
-			'element' => $queue,
-			'field' => 'event_types',
-			'relation' => 'event_type_assignments',
-			'relation_id_field' => 'event_type_id',
-			'options' => EventType::model()->getActiveList(),
-			'default_options' => array(),
-			'htmlOptions' => array(	
-				'label' => 'Event types',
-				'empty' => '- Select -',
-			),
-			'hidden' => false,
-			'inline' => false,
-			'noSelectionsMessage' => 'None',
-			'showRemoveAllLink' => false,
-			'layoutColumns' => array(
-				'label' => 3,
-				'field' => 8,
-			),
-			'sortable' => true,
-		))?>
+        $this->widget('application.widgets.MultiSelectList', array(
+            'element' => $queue,
+            'field' => 'event_types',
+            'relation' => 'event_type_assignments',
+            'relation_id_field' => 'event_type_id',
+            'options' => EventType::model()->getActiveList(),
+            'default_options' => array(),
+            'htmlOptions' => array(
+                'label' => 'Event types',
+                'empty' => '- Select -',
+            ),
+            'hidden' => false,
+            'inline' => false,
+            'noSelectionsMessage' => 'None',
+            'showRemoveAllLink' => false,
+            'layoutColumns' => array(
+                'label' => 3,
+                'field' => 8,
+            ),
+            'sortable' => true,
+        ))?>
 	</div>
 </form>

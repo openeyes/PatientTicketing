@@ -23,12 +23,15 @@
 	<div class="large-12 column">
 		<div class="box generic">
 			<?php
-			if (!count($tickets)) {?>
+            if (!count($tickets)) {
+                ?>
 				<div class="alert-box">
 					No tickets match the search criteria.
 				</div>
 			<?php
-			} else {?>
+
+            } else {
+                ?>
 				<div class="pagination">
 				</div>
 				<table class="grid audit-logs" id="ticket-table">
@@ -48,17 +51,19 @@
 					</thead>
 					<tbody id="ticket-list">
 					<?php foreach ($tickets as $i => $t) {
-						$this->renderPartial('_ticketlist_row',array('i'=>$i,'ticket'=>$t, 'can_process' => $can_process));
-					}?>
+    $this->renderPartial('_ticketlist_row', array('i'=>$i, 'ticket'=>$t, 'can_process' => $can_process));
+}
+                ?>
 					</tbody>
 				</table>
 				<div class="text-center pagination last">
 					<?php $this->widget('CLinkPager', array(
-									'pages' => $pages,
-									'header' => ''
-							)) ?>
+                                    'pages' => $pages,
+                                    'header' => ''
+                            )) ?>
 				</div>
-			<?php }?>
+			<?php 
+            }?>
 		</div>
 	</div>
 </div>

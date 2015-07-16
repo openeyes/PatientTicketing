@@ -16,44 +16,48 @@
  * @copyright Copyright (c) 2011-2014, OpenEyes Foundation
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
-if ($queue) {?>
+if ($queue) {
+    ?>
 	<div class="row">
 	<div class="large-6 column">
 		<?php
-		foreach ($form_fields as $fld) {
-			if (@$fld['type'] == 'widget') {
-				$this->widget('OEModule\PatientTicketing\widgets\\' . $fld['widget_name'], array(
-						'ticket' => $this->ticket,
-						'label_width' => $this->label_width,
-						'data_width' => $this->data_width,
-						'form_name' => $fld['form_name'],
-						'form_data' => $form_data,
-					));
-			}
-			else { ?>
+        foreach ($form_fields as $fld) {
+            if (@$fld['type'] == 'widget') {
+                $this->widget('OEModule\PatientTicketing\widgets\\' . $fld['widget_name'], array(
+                        'ticket' => $this->ticket,
+                        'label_width' => $this->label_width,
+                        'data_width' => $this->data_width,
+                        'form_name' => $fld['form_name'],
+                        'form_data' => $form_data,
+                    ));
+            } else {
+                ?>
 			<fieldset class="field-row row">
 				<div class="large-<?= $this->label_width ?> column">
 					<label for="<?= $fld['form_name']?>"><?= $fld['label'] ?>:</label>
 				</div>
 				<div class="large-<?= $this->data_width ?> column end">
 					<?php if (@$fld['choices']) {
-						echo CHtml::dropDownList(
-								$fld['form_name'],
-								@$form_data[$fld['form_name']],
-								$fld['choices'],
-								array('empty' => ($fld['required']) ? ' - Please Select - ' : 'None'));
-					} else {
-						//may need to expand this beyond textarea and select in the future.
-						$notes = @$form_data[$fld['form_name']];
-						?>
+    echo CHtml::dropDownList(
+                                $fld['form_name'],
+                                @$form_data[$fld['form_name']],
+                                $fld['choices'],
+                                array('empty' => ($fld['required']) ? ' - Please Select - ' : 'None'));
+} else {
+    //may need to expand this beyond textarea and select in the future.
+                        $notes = @$form_data[$fld['form_name']];
+    ?>
 						<textarea id="<?= $fld['form_name']?>" name="<?= $fld['form_name']?>"><?=$notes?></textarea>
-					<?php }?>
+					<?php 
+}
+                ?>
 				</div>
 			</fieldset>
-		<?php }
-		}
-		if($auto_save){
-			?>
+		<?php 
+            }
+        }
+    if ($auto_save) {
+        ?>
 			<script>
 				$(document).ready(function(){
 					window.patientTicketChanged = true;
@@ -61,20 +65,30 @@ if ($queue) {?>
 				});
 			</script>
 		<?php
-		}
-		?>
+
+    }
+    ?>
 	</div>
 	<div class="large-6 column end">
-		<?php	if ($this->patient_id) { ?>
+		<?php	if ($this->patient_id) {
+    ?>
 			<ul>
-				<?php	foreach ($queue->event_types as $et) {?>
+				<?php	foreach ($queue->event_types as $et) {
+    ?>
 					<li><a href="<?= Yii::app()->baseURL?>/<?=$et->class_name?>/default/create?patient_id=<?= $this->patient_id ?>" class="button small event-type-link auto-save" data-queue="<?= $this->current_queue_id?>"><?= $et->name ?></a></li>
-				<?php }
-				if ($print_letter_event) {?>
+				<?php 
+}
+    if ($print_letter_event) {
+        ?>
 					<li><a href="<?= Yii::app()->baseURL?>/<?=$print_letter_event->eventType->class_name?>/default/doPrintAndView/<?=$print_letter_event->id?>?all=1" class="button small event-type-link auto-save" data-queue="<?= $this->current_queue_id?>">Print Letter</a></li>
-				<?php } ?>
+				<?php 
+    }
+    ?>
 			</ul>
-		<?php }	?>
+		<?php 
+}
+    ?>
 	</div>
 	</div>
-<?php } ?>
+<?php 
+} ?>

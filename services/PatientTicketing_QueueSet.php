@@ -19,17 +19,17 @@
 
 namespace OEModule\PatientTicketing\services;
 
-class PatientTicketing_QueueSet extends \services\Resource {
-	public $name;
-	public $description;
-	public $active;
-	public $initial_queue;
-	public $permissioned_user_ids = array();
-	public $filter_priority;
-	public $filter_subspecialty;
-	public $filter_firm;
-	public $filter_my_tickets;
-	public $filter_closed_tickets;
-	public $default_queue;
-
+class PatientTicketing_QueueSet extends \services\Resource
+{
+    public $name;
+    public $description;
+    public $active;
+    public $initial_queue;
+    public $permissioned_user_ids = array();
+    public $filter_priority;
+    public $filter_subspecialty;
+    public $filter_firm;
+    public $filter_my_tickets;
+    public $filter_closed_tickets;
+    public $default_queue;
 }

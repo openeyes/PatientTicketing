@@ -30,12 +30,18 @@
 		</span>
 	</div>
 
-	<?php if ($queue->all_outcome_queues) {?>
+	<?php if ($queue->all_outcome_queues) {
+    ?>
 		<ul>
-			<?php foreach ($queue->all_outcome_queues as $oc) { ?>
-				<?php $this->renderPartial("queue_as_list", array('queue' => $oc)); ?>
-			<?php }?>
+			<?php foreach ($queue->all_outcome_queues as $oc) {
+    ?>
+				<?php $this->renderPartial("queue_as_list", array('queue' => $oc));
+    ?>
+			<?php 
+}
+    ?>
 		</ul>
-	<?php } ?>
+	<?php 
+} ?>
 
 </li>

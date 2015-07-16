@@ -19,11 +19,10 @@
 
 namespace OEModule\PatientTicketing\services;
 
-
-class PatientTicketing_QueueSetCategory extends \services\Resource {
-
-	public $id;
-	public $name;
-	public $active;
-	public $display_order;
+class PatientTicketing_QueueSetCategory extends \services\Resource
+{
+    public $id;
+    public $name;
+    public $active;
+    public $display_order;
 }

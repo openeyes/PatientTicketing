@@ -18,46 +18,47 @@
  */
 
 namespace OEModule\PatientTicketing\widgets;
+
 use Yii;
 
-class TicketMove extends \CWidget {
-	public $event_types;
-	public $ticket_info;
-	public $current_queue_name;
-	public $outcome_options;
-	public $ticket;
+class TicketMove extends \CWidget
+{
+    public $event_types;
+    public $ticket_info;
+    public $current_queue_name;
+    public $outcome_options;
+    public $ticket;
 
-	protected $outcome_queue_id;
+    protected $outcome_queue_id;
 
-	public $assetFolder;
-	public $shortName;
+    public $assetFolder;
+    public $shortName;
 
-	public function run()
-	{
-		//TODO: genericise this behaviour
-		$cls_name = explode('\\', get_class($this));
-		$this->shortName = array_pop($cls_name);
-		if (file_exists(dirname(__FILE__) . "/js/".$this->shortName.".js")) {
-			$this->assetFolder = Yii::app()->getAssetManager()->publish(dirname(__FILE__) . "/js/");
-			Yii::app()->getClientScript()->registerScriptFile($this->assetFolder . '/' . $this->shortName.".js");
-			Yii::app()->getAssetManager()->registerCssFile('css/module.css', 'application.modules.PatientTicketing.assets', 10, \AssetManager::OUTPUT_ALL);
-		}
+    public function run()
+    {
+        //TODO: genericise this behaviour
+        $cls_name = explode('\\', get_class($this));
+        $this->shortName = array_pop($cls_name);
+        if (file_exists(dirname(__FILE__) . "/js/".$this->shortName.".js")) {
+            $this->assetFolder = Yii::app()->getAssetManager()->publish(dirname(__FILE__) . "/js/");
+            Yii::app()->getClientScript()->registerScriptFile($this->assetFolder . '/' . $this->shortName.".js");
+            Yii::app()->getAssetManager()->registerCssFile('css/module.css', 'application.modules.PatientTicketing.assets', 10, \AssetManager::OUTPUT_ALL);
+        }
 
-		if ($this->ticket) {
-			$this->event_types = $this->ticket->current_queue->getRelatedEventTypes();
-			$this->ticket_info = $this->ticket->getInfoData(false);
-			$this->current_queue_name =  $this->ticket->current_queue->name;
-			$this->outcome_options = array();
-			$od = $this->ticket->current_queue->getOutcomeData(false);
-			foreach ($od as $out) {
-				$this->outcome_options[$out['id']] = $out['name'];
-			};
-			if (count($od) == 1) {
-				$this->outcome_queue_id = $od[0]['id'];
-			}
-		}
+        if ($this->ticket) {
+            $this->event_types = $this->ticket->current_queue->getRelatedEventTypes();
+            $this->ticket_info = $this->ticket->getInfoData(false);
+            $this->current_queue_name =  $this->ticket->current_queue->name;
+            $this->outcome_options = array();
+            $od = $this->ticket->current_queue->getOutcomeData(false);
+            foreach ($od as $out) {
+                $this->outcome_options[$out['id']] = $out['name'];
+            };
+            if (count($od) == 1) {
+                $this->outcome_queue_id = $od[0]['id'];
+            }
+        }
 
-		$this->render('TicketMove');
-	}
-
+        $this->render('TicketMove');
+    }
 }

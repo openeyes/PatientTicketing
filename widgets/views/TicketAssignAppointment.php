@@ -18,8 +18,8 @@
  */
 
 $api = Yii::app()->moduleAPI->get('PatientTicketing');
-if($outcome = $api->getFollowUp($this->ticket->id)){
-?>
+if ($outcome = $api->getFollowUp($this->ticket->id)) {
+    ?>
 
 <fieldset class="field-row row" data-formName="<?=$this->form_name ?>">
 	<div class="large-<?= $this->label_width ?> column">
@@ -38,23 +38,24 @@ if($outcome = $api->getFollowUp($this->ticket->id)){
 	<tr>
 		<td>
 			<?php
-			$value = @$this->form_data[$this->form_name]['appointment_date'];
-			$this->widget('zii.widgets.jui.CJuiDatePicker', array(
-				'name'=>$this->form_name . '[appointment_date]',
-				'id'=>$this->form_name . '_appointment_date',
-				// additional javascript options for the date picker plugin
-				'options'=>array(
-					'showAnim'=>'fold',
-					'dateFormat'=>Helper::NHS_DATE_FORMAT_JS,
-					'minDate'=>'new Date()',
-				),
-				'value' => (preg_match('/^[0
-				-9]{4}-[0-9]{2}-[0-9]{2}$/',$value) ? Helper::convertMySQL2NHS($value) : $value),
-				'htmlOptions'=>null
-			)); ?>
+            $value = @$this->form_data[$this->form_name]['appointment_date'];
+    $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                'name'=>$this->form_name . '[appointment_date]',
+                'id'=>$this->form_name . '_appointment_date',
+                // additional javascript options for the date picker plugin
+                'options'=>array(
+                    'showAnim'=>'fold',
+                    'dateFormat'=>Helper::NHS_DATE_FORMAT_JS,
+                    'minDate'=>'new Date()',
+                ),
+                'value' => (preg_match('/^[0
+				-9]{4}-[0-9]{2}-[0-9]{2}$/', $value) ? Helper::convertMySQL2NHS($value) : $value),
+                'htmlOptions'=>null
+            ));
+    ?>
 		</td>
 		<td>
-			<?php echo CHtml::textField($this->form_name . '[appointment_time]',@$this->form_data[$this->form_name]['appointment_time'])?>
+			<?php echo CHtml::textField($this->form_name . '[appointment_time]', @$this->form_data[$this->form_name]['appointment_time'])?>
 		</td>
 
 	</tr>
@@ -63,7 +64,8 @@ if($outcome = $api->getFollowUp($this->ticket->id)){
 		</div>
 
 </fieldset>
-<?php } ?>
+<?php 
+} ?>
 
 
 

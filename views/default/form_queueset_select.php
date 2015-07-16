@@ -20,31 +20,39 @@
 ?>
 
 <?php
-	$qsc_svc = Yii::app()->service->getService($this::$QUEUESETCATEGORY_SERVICE);
-	$queueset_list = $qsc_svc->getCategoryQueueSetsList($category, Yii::app()->user->id);
-	$form = $this->beginWidget('CActiveForm', array(
-				'id'=>'ticket-filter',
-				'htmlOptions'=>array(
-						'class' => 'row'
-				),
-				'enableAjaxValidation'=>false,
-		));
+    $qsc_svc = Yii::app()->service->getService($this::$QUEUESETCATEGORY_SERVICE);
+    $queueset_list = $qsc_svc->getCategoryQueueSetsList($category, Yii::app()->user->id);
+    $form = $this->beginWidget('CActiveForm', array(
+                'id'=>'ticket-filter',
+                'htmlOptions'=>array(
+                        'class' => 'row'
+                ),
+                'enableAjaxValidation'=>false,
+        ));
 ?>
 
 <div class="large-12 column">
 	<div class="panel">
-		<div id="queueset-select-toggle-wrapper"<?php if (!$queueset) {?> style="display: none;"<?php }?>><button class="secondary small" id="queueset-select-toggle">Change <?=$category->name?></button></div>
-		<div id="queueset-form" class="row field-row"<?php if ($queueset) {?> style="display: none;"<?php }?>>
-			<?php if (!$queueset) {?>
+		<div id="queueset-select-toggle-wrapper"<?php if (!$queueset) {
+    ?> style="display: none;"<?php 
+}?>><button class="secondary small" id="queueset-select-toggle">Change <?=$category->name?></button></div>
+		<div id="queueset-form" class="row field-row"<?php if ($queueset) {
+    ?> style="display: none;"<?php 
+}?>>
+			<?php if (!$queueset) {
+    ?>
 			<input hidden name="select_queue_set" value="1">
-			<?php } ?>
+			<?php 
+} ?>
 			<div class="large-2 column">Select <?= $category->name ?>:</div>
 			<div class="large-3 column"><?php echo CHtml::dropDownList('queueset_id', ($queueset ? $queueset->getId() : null), $queueset_list, array('empty'=>'- Please Select -'))?></div>
 			<div class="large-2 column end">
 				<input type="submit" class="secondary small" value="Select" />
-				<?php if ($queueset) {?>
+				<?php if ($queueset) {
+    ?>
 					<button class="small warning" id="queueset-select-cancel">Cancel</button>
-				<?php }?>
+				<?php 
+}?>
 			</div>
 		</div>
 	</div>

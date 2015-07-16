@@ -23,10 +23,12 @@
 <tr data-ticket-id="<?= $ticket->id?>" data-ticket-info="<?= CHtml::encode($ticket->getInfoData()) ?>">
 	<td><?= $ticket->current_queue->name ?></td>
 	<td><a href="<?= $ticket->getSourceLink() ?>"><?= $ticket->patient->hos_num . " - "
-			. (($ticket->patient->nhs_num) ? $ticket->patient->nhs_num . " - " : "")
-			. $ticket->patient->getHSCICName()
-			. " (" . ($ticket->patient->isDeceased() ? "Deceased" : $ticket->patient->getAge()) . ")"; ?></a></td>
-	<td <?php if ($ticket->priority) {?>style="color: <?= $ticket->priority->colour ?>"<?php }?>><?= $ticket->priority ? $ticket->priority->name : "-" ?></td>
+            . (($ticket->patient->nhs_num) ? $ticket->patient->nhs_num . " - " : "")
+            . $ticket->patient->getHSCICName()
+            . " (" . ($ticket->patient->isDeceased() ? "Deceased" : $ticket->patient->getAge()) . ")"; ?></a></td>
+	<td <?php if ($ticket->priority) {
+    ?>style="color: <?= $ticket->priority->colour ?>"<?php 
+}?>><?= $ticket->priority ? $ticket->priority->name : "-" ?></td>
 	<td><?= Helper::convertDate2NHS($ticket->created_date)?></td>
 	<td><?= $ticket->getTicketFirm() ?></td>
 	<td><?= $ticket->user->getFullName() ?></td>
@@ -37,30 +39,37 @@
 	 -->
 	<td class="actions">
 		<?php
-		if ($can_process) {
-			if (!$ticket->is_complete()) {
-				/*
-				Ownership functionality is not required at the moment. It's expected that this will take place as
-				part of the "move" functionality
+        if ($can_process) {
+            if (!$ticket->is_complete()) {
+                /*
+                Ownership functionality is not required at the moment. It's expected that this will take place as
+                part of the "move" functionality
 
-				if ($ticket->assignee) {
-					if ($ticket->assignee_user_id == Yii::app()->user->id) {
-						?><button id="release" class="tiny ticket-release">Release</button><?php
-					}
-				}
-				else {
-					?><button id="take" class="tiny ticket-take">Take</button><?php
-				}
-				*/
-				?>
-				<a href="<?= Yii::app()->createURL("/PatientTicketing/default/startTicketProcess/", array('ticket_id' => $ticket->id)); ?>" class="button tiny"><?= $t_svc->getTicketActionLabel($ticket) ?></a>
-		<?php }
-		}?>
-		<?php if ($ticket->hasHistory()) {?>
+                if ($ticket->assignee) {
+                    if ($ticket->assignee_user_id == Yii::app()->user->id) {
+                        ?><button id="release" class="tiny ticket-release">Release</button><?php
+                    }
+                }
+                else {
+                    ?><button id="take" class="tiny ticket-take">Take</button><?php
+                }
+                */
+                ?>
+				<a href="<?= Yii::app()->createURL("/PatientTicketing/default/startTicketProcess/", array('ticket_id' => $ticket->id));
+                ?>" class="button tiny"><?= $t_svc->getTicketActionLabel($ticket) ?></a>
+		<?php 
+            }
+        }?>
+		<?php if ($ticket->hasHistory()) {
+    ?>
 			<button class="tiny ticket-history">History</button>
-			<?php if ($this->checkAccess('Patient Tickets admin')) {?>
+			<?php if ($this->checkAccess('Patient Tickets admin')) {
+    ?>
 				<button class="tiny undo-last-queue-step">Undo last step</button>
-			<?php }?>
-		<?php }?>
+			<?php 
+}
+    ?>
+		<?php 
+}?>
 	</td>
 </tr>

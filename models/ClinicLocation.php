@@ -21,15 +21,15 @@ namespace OEModule\PatientTicketing\models;
 
 class ClinicLocation extends \BaseActiveRecordVersioned
 {
-	public function tableName()
-	{
-		return 'patientticketing_clinic_location';
-	}
+    public function tableName()
+    {
+        return 'patientticketing_clinic_location';
+    }
 
-	public function rules()
-	{
-		return array(
-			array('name', 'required'),
-		);
-	}
+    public function rules()
+    {
+        return array(
+            array('name', 'required'),
+        );
+    }
 }

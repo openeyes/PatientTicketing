@@ -18,13 +18,13 @@
  */
 
 return array(
-		'queuesetcategory1' => array(
-				'id' => 1,
-				'name' => 'Category 1',
-				'active' => true,
-		),
-		'queuesetcategory2' => array(
-				'id' => 2,
-				'name' => 'Category 2',
-				'active' => true,
-		),);
+        'queuesetcategory1' => array(
+                'id' => 1,
+                'name' => 'Category 1',
+                'active' => true,
+        ),
+        'queuesetcategory2' => array(
+                'id' => 2,
+                'name' => 'Category 2',
+                'active' => true,
+        ),);

@@ -26,38 +26,39 @@ $qs_svc = Yii::app()->service->getService($this::$QUEUESET_SERVICE);
 
 	<div class="box content">
 		<?php
-		if($queueset) {
-			if ($flash_message = Yii::app()->user->getFlash('patient-ticketing-' . $queueset->getId())) {
-				?>
+        if ($queueset) {
+            if ($flash_message = Yii::app()->user->getFlash('patient-ticketing-' . $queueset->getId())) {
+                ?>
 				<br />
 				<div class="large-12 column">
 					<div class="panel">
 						<div class="alert-box with-icon success">
-							<?php echo $flash_message; ?>
+							<?php echo $flash_message;
+                ?>
 						</div>
 					</div>
 				</div>
 			<?php
-			}
-		}
-		?>
+
+            }
+        }
+        ?>
 <?php
-	$this->renderPartial('form_queueset_select', array(
-		'qs_svc' => $qs_svc,
-		'category' => $category,
-		'queueset' => $queueset
-	));
+    $this->renderPartial('form_queueset_select', array(
+        'qs_svc' => $qs_svc,
+        'category' => $category,
+        'queueset' => $queueset
+    ));
 
-	if ($queueset) {
-		$this->renderPartial('ticketlist', array(
-			'qs_svc' => $qs_svc,
-			'category' => $category,
-			'queueset' => $queueset,
-			'tickets' => $tickets,
-			'patient_filter' => $patient_filter,
-			'pages' => $pages
-		));
-
-	}
+    if ($queueset) {
+        $this->renderPartial('ticketlist', array(
+            'qs_svc' => $qs_svc,
+            'category' => $category,
+            'queueset' => $queueset,
+            'tickets' => $tickets,
+            'patient_filter' => $patient_filter,
+            'pages' => $pages
+        ));
+    }
 ?>
 </div>

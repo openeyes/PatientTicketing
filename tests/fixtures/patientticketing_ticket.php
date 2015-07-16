@@ -18,35 +18,35 @@
  */
 
 return array(
-		'ticket1' => array(
-				'id' => 1,
-				'patient_id' => 1,
-				'assignee_user_id' => 1,
-				'event_id' => 1,
-				'assignee_date' => '2014-09-04',
-		),
-		'ticket2' => array(
-				'id' => 2,
-				'patient_id' => 2,
-				'assignee_user_id' => 1,
-				'assignee_date' => '2014-09-04',
-		),
-		'ticket3' => array(
-				'id' => 3,
-				'patient_id' => 1,
-				'assignee_user_id' => 1,
-				'assignee_date' => '2014-09-05',
-		),
-		'ticket4' => array(
-				'id' => 4,
-				'patient_id' => 3,
-				'assignee_user_id' => 1,
-				'assignee_date' => '2014-09-04',
-		),
-		'ticket5' => array(
-				'id' => 5,
-				'patient_id' => 4,
-				'assignee_user_id' => 1,
-				'assignee_date' => '2014-09-04',
-	),
+        'ticket1' => array(
+                'id' => 1,
+                'patient_id' => 1,
+                'assignee_user_id' => 1,
+                'event_id' => 1,
+                'assignee_date' => '2014-09-04',
+        ),
+        'ticket2' => array(
+                'id' => 2,
+                'patient_id' => 2,
+                'assignee_user_id' => 1,
+                'assignee_date' => '2014-09-04',
+        ),
+        'ticket3' => array(
+                'id' => 3,
+                'patient_id' => 1,
+                'assignee_user_id' => 1,
+                'assignee_date' => '2014-09-05',
+        ),
+        'ticket4' => array(
+                'id' => 4,
+                'patient_id' => 3,
+                'assignee_user_id' => 1,
+                'assignee_date' => '2014-09-04',
+        ),
+        'ticket5' => array(
+                'id' => 5,
+                'patient_id' => 4,
+                'assignee_user_id' => 1,
+                'assignee_date' => '2014-09-04',
+    ),
 );

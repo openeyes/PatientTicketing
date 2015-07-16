@@ -19,76 +19,75 @@
 
 namespace OEModule\PatientTicketing\widgets;
 
+class BaseTicketAssignment extends \CWidget
+{
+    public $shortName;
+    public $ticket;
+    public $label_width = 2;
+    public $data_width = 4;
+    public $form_name;
+    public $assetFolder;
 
-class BaseTicketAssignment extends \CWidget {
+    public function init()
+    {
+        // if the widget has javascript, load it in
+        $cls_name = explode('\\', get_class($this));
+        $this->shortName = array_pop($cls_name);
+        $path = dirname(__FILE__);
+        if (file_exists($path . "/js/".$this->shortName.".js")) {
+            $assetManager = \Yii::app()->getAssetManager();
+            $this->assetFolder = $assetManager->publish($path . "/js/");
+            $assetManager->registerScriptFile("js/".$this->shortName.".js", "application.modules.PatientTicketing.widgets");
+        }
+        parent::init();
+    }
 
-	public $shortName;
-	public $ticket;
-	public $label_width = 2;
-	public $data_width = 4;
-	public $form_name;
-	public $assetFolder;
+    /**
+     * Extract the data into a storable (usable) form from the form $_POST data
+     *
+     * @param $form_data
+     */
+    public function extractFormData($form_data)
+    {
+        // should be implemented in the child class
+    }
 
-	public function init()
-	{
-		// if the widget has javascript, load it in
-		$cls_name = explode('\\', get_class($this));
-		$this->shortName = array_pop($cls_name);
-		$path = dirname(__FILE__);
-		if (file_exists($path . "/js/".$this->shortName.".js")) {
-			$assetManager = \Yii::app()->getAssetManager();
-			$this->assetFolder = $assetManager->publish($path . "/js/");
-			$assetManager->registerScriptFile("js/".$this->shortName.".js", "application.modules.PatientTicketing.widgets");
-		}
-		parent::init();
-	}
+    /**
+     * Validate the submitted form data for this widget
+     *
+     * @param $form_data
+     */
+    public function validate($form_data)
+    {
+        // should be implemented in the child class
+    }
 
-	/**
-	 * Extract the data into a storable (usable) form from the form $_POST data
-	 *
-	 * @param $form_data
-	 */
-	public function extractFormData($form_data)
-	{
-		// should be implemented in the child class
-	}
+    /**
+     * For widgets that need to process assignment data in the wider patient record context
+     *
+     * @param $ticket
+     * @param $data
+     */
+    public function processAssignmentData($ticket, $data)
+    {
+        // should be implemented in the child class as necessary
+    }
 
-	/**
-	 * Validate the submitted form data for this widget
-	 *
-	 * @param $form_data
-	 */
-	public function validate($form_data)
-	{
-		// should be implemented in the child class
-	}
+    /**
+     * Generates a string for display/reporting purposes
+     *
+     * @param $data
+     */
+    public function getReportString($data)
+    {
+        // should be implemented in the child class as necessary
+    }
 
-	/**
-	 * For widgets that need to process assignment data in the wider patient record context
-	 *
-	 * @param $ticket
-	 * @param $data
-	 */
-	public function processAssignmentData($ticket, $data)
-	{
-		// should be implemented in the child class as necessary
-	}
-
-	/**
-	 * Generates a string for display/reporting purposes
-	 *
-	 * @param $data
-	 */
-	public function getReportString($data)
-	{
-		// should be implemented in the child class as necessary
-	}
-
-	/**
-	 * renders the widget view
-	 */
-	public function run()
-	{
-		$this->render($this->shortName);
-	}
+    /**
+     * renders the widget view
+     */
+    public function run()
+    {
+        $this->render($this->shortName);
+    }
 }

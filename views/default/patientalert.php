@@ -20,6 +20,6 @@
 
 <?php
 $this->widget('OEModule\PatientTicketing\widgets\PatientAlert', array(
-		'patient' => $patient)
+        'patient' => $patient)
 );
 ?>

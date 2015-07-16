@@ -17,26 +17,26 @@ namespace OEModule\PatientTicketing\components;
 
 class AutoSaveTicket
 {
-	public static function saveFormData ($patient_id,$queue_id,$data)
-	{
-		$key = static::
-			getAutoSaveKey($patient_id,$queue_id);
-		\AutoSave::add($key,$data);
-	}
+    public static function saveFormData($patient_id, $queue_id, $data)
+    {
+        $key = static::
+            getAutoSaveKey($patient_id, $queue_id);
+        \AutoSave::add($key, $data);
+    }
 
-	public static function getFormData ($patient_id,$queue_id)
-	{
-		$key = static::getAutoSaveKey($patient_id,$queue_id);
-		return \AutoSave::get($key);
-	}
+    public static function getFormData($patient_id, $queue_id)
+    {
+        $key = static::getAutoSaveKey($patient_id, $queue_id);
+        return \AutoSave::get($key);
+    }
 
-	public static function getAutoSaveKey($patient_id,$queue_id)
-	{
-		return $key = 'pt_'.$patient_id.'_'.$queue_id;
-	}
+    public static function getAutoSaveKey($patient_id, $queue_id)
+    {
+        return $key = 'pt_'.$patient_id.'_'.$queue_id;
+    }
 
-	public static function clear()
-	{
-		\AutoSave::RemoveAllByPrefix('pt_');
-	}
+    public static function clear()
+    {
+        \AutoSave::RemoveAllByPrefix('pt_');
+    }
 }

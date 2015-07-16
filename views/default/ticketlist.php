@@ -25,23 +25,25 @@ $can_process = $queueset && $qs_svc->isQueueSetPermissionedForUser($queueset, Yi
 	<div class="panel panel actions row">
 
 		<div class="large-12 column">
-			<?php if ($this->checkAccess('OprnPrint')) {?>
+			<?php if ($this->checkAccess('OprnPrint')) {
+    ?>
 				<div class="button-bar">
 					<button id="btn_print" class="small">Print</button>
 				</div>
-			<?php }?>
+			<?php 
+}?>
 		</div>
 	</div>
 	-->
 
 	<div class="search-filters theatre-diaries">
 		<?php $this->beginWidget('CActiveForm', array(
-						'id'=>'ticket-filter',
-						'htmlOptions'=>array(
-								'class' => 'row'
-						),
-						'enableAjaxValidation'=>false,
-				))?>
+                        'id'=>'ticket-filter',
+                        'htmlOptions'=>array(
+                                'class' => 'row'
+                        ),
+                        'enableAjaxValidation'=>false,
+                ))?>
 		<input type="hidden" name="queueset_id" value="<?=$queueset->getId()?>" />
 		<div class="large-12 column">
 			<div class="panel">
@@ -51,18 +53,26 @@ $can_process = $queueset && $qs_svc->isQueueSetPermissionedForUser($queueset, Yi
 							<thead>
 							<tr>
 								<th class="large-2">Patient List:</th>
-								<?php if ($queueset->filter_priority) {?>
+								<?php if ($queueset->filter_priority) {
+    ?>
 									<th class="large-2">Priority:</th>
-								<?php }?>
-								<?php if ($queueset->filter_subspecialty) {?>
+								<?php 
+}?>
+								<?php if ($queueset->filter_subspecialty) {
+    ?>
 									<th class="large-3">Subspecialty:</th>
-								<?php }?>
-								<?php if ($queueset->filter_firm) {?>
+								<?php 
+}?>
+								<?php if ($queueset->filter_firm) {
+    ?>
 									<th class="large-3">Firm:</th>
-								<?php }?>
-								<?php if ($queueset->filter_closed_tickets) {?>
+								<?php 
+}?>
+								<?php if ($queueset->filter_closed_tickets) {
+    ?>
 									<th nowrap>Show Completed:</th>
-								<?php }?>
+								<?php 
+}?>
 								<th>&nbsp;</th>
 							</tr>
 							</thead>
@@ -70,51 +80,68 @@ $can_process = $queueset && $qs_svc->isQueueSetPermissionedForUser($queueset, Yi
 							<tr class="filter-row">
 								<td>
 									<?php
-									$this->widget('application.widgets.MultiSelectList', array(
-											'auto_data_order'=>true,
-											'field' => 'queue-ids',
-											'default_options' => @$_POST['queue-ids'],
-											'options' => CHtml::listData($qs_svc->getQueueSetQueues($queueset, false),'id','name'),
-											'htmlOptions' => array('empty' => '- Please Select -', 'nowrapper' => true),
-											'noSelectionsMessage' => 'All Patient Lists')
-											);
-									?>
+                                    $this->widget('application.widgets.MultiSelectList', array(
+                                            'auto_data_order'=>true,
+                                            'field' => 'queue-ids',
+                                            'default_options' => @$_POST['queue-ids'],
+                                            'options' => CHtml::listData($qs_svc->getQueueSetQueues($queueset, false), 'id', 'name'),
+                                            'htmlOptions' => array('empty' => '- Please Select -', 'nowrapper' => true),
+                                            'noSelectionsMessage' => 'All Patient Lists')
+                                            );
+                                    ?>
 
 								</td>
-								<?php if ($queueset->filter_priority) {?>
+								<?php if ($queueset->filter_priority) {
+    ?>
 								<td>
 									<?php $this->widget('application.widgets.MultiSelectList', array(
-													'auto_data_order'=>true,
-													'field' => 'priority-ids',
-													'default_options' => @$_POST['priority-ids'],
-													'options' => CHtml::listData(OEModule\PatientTicketing\models\Priority::model()->findAll(), 'id', 'name'),
-													'htmlOptions' => array('empty' => '- Please Select -', 'nowrapper' => true),
-													'noSelectionsMessage' => 'All Priorities')
-									) ?>
+                                                    'auto_data_order'=>true,
+                                                    'field' => 'priority-ids',
+                                                    'default_options' => @$_POST['priority-ids'],
+                                                    'options' => CHtml::listData(OEModule\PatientTicketing\models\Priority::model()->findAll(), 'id', 'name'),
+                                                    'htmlOptions' => array('empty' => '- Please Select -', 'nowrapper' => true),
+                                                    'noSelectionsMessage' => 'All Priorities')
+                                    ) ?>
 								</td>
-								<?php }?>
-								<?php if ($queueset->filter_subspecialty) {?>
+								<?php 
+}?>
+								<?php if ($queueset->filter_subspecialty) {
+    ?>
 								<td>
 									<?php echo CHtml::dropDownList('subspecialty-id', @$_POST['subspecialty-id'], Subspecialty::model()->getList(), array('empty'=>'All specialties', 'disabled' => (@$_POST['emergency_list']==1 ? 'disabled' : '')))?>
 								</td>
-								<?php }?>
-								<?php if ($queueset->filter_firm) {?>
+								<?php 
+}?>
+								<?php if ($queueset->filter_firm) {
+    ?>
 								<td>
-									<?php if (!@$_POST['subspecialty-id']) {?>
+									<?php if (!@$_POST['subspecialty-id']) {
+    ?>
 										<?php echo CHtml::dropDownList('firm-id', '', array(), array('empty'=>'All firms', 'disabled' => 'disabled'))?>
-									<?php } else {?>
+									<?php 
+} else {
+    ?>
 										<?php echo CHtml::dropDownList('firm-id', @$_POST['firm-id'], Firm::model()->getList(@$_POST['subspecialty-id']), array('empty'=>'All firms', 'disabled' => (@$_POST['emergency_list']==1 ? 'disabled' : '')))?>
-									<?php }?>
+									<?php 
+}
+    ?>
 								</td>
-								<?php }?>
-								<?php if ($queueset->filter_closed_tickets) {?>
+								<?php 
+}?>
+								<?php if ($queueset->filter_closed_tickets) {
+    ?>
 								<td align="middle">
 									<?php echo CHtml::checkBox('closed-tickets', (@$_POST['closed-tickets'] == 1))?>
 								</td>
-								<?php }?>
+								<?php 
+}?>
 								<td>
 									<button id="search_button" class="secondary small" type="submit">
-										<?php if ($patient_filter) {?>Apply<? } else {?>Search<?php }?>
+										<?php if ($patient_filter) {
+    ?>Apply<?php 
+} else {
+    ?>Search<?php 
+}?>
 									</button>
 								</td>
 							</tr>
@@ -127,11 +154,13 @@ $can_process = $queueset && $qs_svc->isQueueSetPermissionedForUser($queueset, Yi
 		</div>
 		<?php $this->endWidget()?>
 	</div>
-	<?php if ($patient_filter) {?>
+	<?php if ($patient_filter) {
+    ?>
 		<div class="large-12 column">
 			<div class="alert-box warning">Filtering for <?= $patient_filter->getFullName() ?></div>
 		</div>
-	<?php }?>
+	<?php 
+}?>
 
 	<?php $this->renderPartial('_ticketlist', array('tickets' => $tickets, 'pages' => $pages, 'can_process' => $can_process)); ?>
 

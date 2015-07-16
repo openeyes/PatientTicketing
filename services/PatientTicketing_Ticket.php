@@ -19,18 +19,16 @@
 
 namespace OEModule\PatientTicketing\services;
 
-
-class PatientTicketing_Ticket extends \services\Resource {
-
-	public $patient_id;
-	public $priority_id;
-	public $report;
-	public $assignee_user_id;
-	public $assignee_date;
-	public $created_user_id;
-	public $created_date;
-	public $last_modified_user_id;
-	public $last_modified_date;
-	public $event_id;
-
+class PatientTicketing_Ticket extends \services\Resource
+{
+    public $patient_id;
+    public $priority_id;
+    public $report;
+    public $assignee_user_id;
+    public $assignee_date;
+    public $created_user_id;
+    public $created_date;
+    public $last_modified_user_id;
+    public $last_modified_date;
+    public $event_id;
 }

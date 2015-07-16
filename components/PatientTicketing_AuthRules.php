@@ -23,13 +23,13 @@ use OEModule\PatientTicketing\models;
 use OEModule\PatientTicketing\services;
 use Yii;
 
-class PatientTicketing_AuthRules {
-
-	public function canProcessQueueSet($user_id, services\PatientTicketing_QueueSet $queueset)
-	{
-		if (Yii::app()->authManager->checkAccess('admin', $user_id)) {
-			return true;
-		}
-		return in_array($user_id, $queueset->permissioned_user_ids);
-	}
+class PatientTicketing_AuthRules
+{
+    public function canProcessQueueSet($user_id, services\PatientTicketing_QueueSet $queueset)
+    {
+        if (Yii::app()->authManager->checkAccess('admin', $user_id)) {
+            return true;
+        }
+        return in_array($user_id, $queueset->permissioned_user_ids);
+    }
 }

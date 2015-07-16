@@ -34,24 +34,24 @@ namespace OEModule\PatientTicketing\models;
  */
 class QueueEventType extends \BaseActiveRecordVersioned
 {
-	public function tableName()
-	{
-		return 'patientticketing_queue_event_type';
-	}
+    public function tableName()
+    {
+        return 'patientticketing_queue_event_type';
+    }
 
-	public function rules()
-	{
-		return array(
-			array('event_type_id', 'safe'),
-			array('event_type_id', 'required'),
-		);
-	}
+    public function rules()
+    {
+        return array(
+            array('event_type_id', 'safe'),
+            array('event_type_id', 'required'),
+        );
+    }
 
-	public function relations()
-	{
-		return array(
-			'queue' => array(self::BELONGS_TO, 'Queue', 'queue_id'),
-			'event_type' => array(self::BELONGS_TO, 'EventType', 'event_type_id'),
-		);
-	}
+    public function relations()
+    {
+        return array(
+            'queue' => array(self::BELONGS_TO, 'Queue', 'queue_id'),
+            'event_type' => array(self::BELONGS_TO, 'EventType', 'event_type_id'),
+        );
+    }
 }

@@ -19,13 +19,12 @@
 
 namespace OEModule\PatientTicketing\services;
 
-
-class PatientTicketing_Queue extends \services\Resource {
-
-	public $name;
-	public $description;
-	public $action_label;
-	public $active;
-	public $is_initial;
-	public $assignment_fields = array();
+class PatientTicketing_Queue extends \services\Resource
+{
+    public $name;
+    public $description;
+    public $action_label;
+    public $active;
+    public $is_initial;
+    public $assignment_fields = array();
 }

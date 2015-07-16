@@ -24,21 +24,23 @@
 	</div>
 	<div class="large-<?= $this->data_width ?> column end">
 		<?php
-		$outcomes = $this->getOutcomeOptions();
-		echo CHtml::dropDownList($this->form_name . '[outcome]', @$this->form_data[$this->form_name]['outcome'], $outcomes['list_data'], array('empty' => '- Please select -', 'options' => $outcomes['options'], 'class' => 'outcome-select')); ?>
+        $outcomes = $this->getOutcomeOptions();
+        echo CHtml::dropDownList($this->form_name . '[outcome]', @$this->form_data[$this->form_name]['outcome'], $outcomes['list_data'], array('empty' => '- Please select -', 'options' => $outcomes['options'], 'class' => 'outcome-select')); ?>
 	</div>
 </fieldset>
-<span id="<?= $this->form_name ?>-followup"<?php if ($this->hideFollowUp && !@$this->form_data[$this->form_name]['followup_quantity']) {?> style="display: none;"<?php }?>>
+<span id="<?= $this->form_name ?>-followup"<?php if ($this->hideFollowUp && !@$this->form_data[$this->form_name]['followup_quantity']) {
+    ?> style="display: none;"<?php 
+}?>>
 <fieldset class="field-row row">
 	<div class="large-<?= $this->label_width ?> column">
 		<label for="followup_quantity">Follow up:</label>
 	</div>
 	<div class="large-<?= $this->data_width ?> column end">
 		<?php
-		$html_options = array('empty'=>'- Please select -', 'options' => array(), 'class'=>'inline');
-		echo CHtml::dropDownList($this->form_name . '[followup_quantity]', @$this->form_data[$this->form_name]['followup_quantity'], Yii::app()->params['follow_up_months'], $html_options);
-		echo CHtml::dropDownList($this->form_name . '[followup_period]', @$this->form_data[$this->form_name]['followup_period'], CHtml::listData(\Period::model()->findAll(array('order'=>'display_order')),'name','name'), $html_options);
-		?>
+        $html_options = array('empty'=>'- Please select -', 'options' => array(), 'class'=>'inline');
+        echo CHtml::dropDownList($this->form_name . '[followup_quantity]', @$this->form_data[$this->form_name]['followup_quantity'], Yii::app()->params['follow_up_months'], $html_options);
+        echo CHtml::dropDownList($this->form_name . '[followup_period]', @$this->form_data[$this->form_name]['followup_period'], CHtml::listData(\Period::model()->findAll(array('order'=>'display_order')), 'name', 'name'), $html_options);
+        ?>
 	</div>
 </fieldset>
 <fieldset class="field-row row">
@@ -46,7 +48,7 @@
 		<label for="site">Clinic location:</label>
 	</div>
 	<div class="large-<?= $this->data_width ?> column end">
-		<?php echo CHtml::dropDownList($this->form_name . '[clinic_location]', @$this->form_data[$this->form_name]['clinic_location'], \CHtml::listData(OEModule\PatientTicketing\models\ClinicLocation::model()->findAll(array('order' => 'display_order asc')),'name','name'), $html_options); ?>
+		<?php echo CHtml::dropDownList($this->form_name . '[clinic_location]', @$this->form_data[$this->form_name]['clinic_location'], \CHtml::listData(OEModule\PatientTicketing\models\ClinicLocation::model()->findAll(array('order' => 'display_order asc')), 'name', 'name'), $html_options); ?>
 	</div>
 </fieldset>
 </span>

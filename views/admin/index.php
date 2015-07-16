@@ -34,10 +34,10 @@
 			<div class="row">
 			<ul class="queueset-list" id="queue-nav">
 			<?php
-			foreach ($queuesets as $qs) {
-				$this->renderPartial("queue_nav_item", array('queueset' => $qs));
-			}
-			?>
+            foreach ($queuesets as $qs) {
+                $this->renderPartial("queue_nav_item", array('queueset' => $qs));
+            }
+            ?>
 			</ul>
 			</div>
 			<div class="row right"><button id="add-queueset" class="secondary small">Add Queue Set</button></div>

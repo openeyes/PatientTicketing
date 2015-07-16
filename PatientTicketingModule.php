@@ -19,19 +19,17 @@
 
 namespace OEModule\PatientTicketing;
 
-
 class PatientTicketingModule extends \BaseModule
 {
-	public $controllerNamespace = '\OEModule\PatientTicketing\controllers';
+    public $controllerNamespace = '\OEModule\PatientTicketing\controllers';
 
-	public function init()
-	{
-		// import the module-level components
-		$this->setImport(array(
-						'PatientTicketing.components.*',
-				));
-		\Yii::app()->authManager->registerRuleset('PatientTicketing', new components\PatientTicketing_AuthRules);
-		parent::init();
-
-	}
+    public function init()
+    {
+        // import the module-level components
+        $this->setImport(array(
+                        'PatientTicketing.components.*',
+                ));
+        \Yii::app()->authManager->registerRuleset('PatientTicketing', new components\PatientTicketing_AuthRules);
+        parent::init();
+    }
 }

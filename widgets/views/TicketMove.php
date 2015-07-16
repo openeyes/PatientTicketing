@@ -19,15 +19,17 @@
 ?>
 
 <?php
-	$t_svc = Yii::app()->service->getService('PatientTicketing_Ticket');
-	$q_svc = Yii::app()->service->getService('PatientTicketing_QueueSet');
-	if ($flash_message = Yii::app()->user->getFlash('patient-ticketing-' . $q_svc->getQueueSetForTicket($this->ticket->id)->getId())) {
-?>
+    $t_svc = Yii::app()->service->getService('PatientTicketing_Ticket');
+    $q_svc = Yii::app()->service->getService('PatientTicketing_QueueSet');
+    if ($flash_message = Yii::app()->user->getFlash('patient-ticketing-' . $q_svc->getQueueSetForTicket($this->ticket->id)->getId())) {
+        ?>
 		<div class="alert-box with-icon success">
-			<?php echo $flash_message; ?>
+			<?php echo $flash_message;
+        ?>
 		</div>
 	<?php
-	}
+
+    }
 ?>
 
 
@@ -38,42 +40,44 @@
 	<div>
 		<h2><?= $t_svc->getTicketActionLabel($this->ticket) ?></h2>
 		<?php
-			if (count($this->outcome_options) > 1) { ?>
+            if (count($this->outcome_options) > 1) {
+                ?>
 				<fieldset class="field-row row">
 					<div class="large-2 column">
 						<label for="to_queue_id">To:</label>
 					</div>
 					<div class="large-3 column">
 						<?php
-							echo CHtml::dropDownList("to_queue_id", $this->outcome_queue_id, $this->outcome_options, array(
-									'id' => 'to_queue_id-' . $this->ticket->id,
-									'empty' => ' - Please Select -'));
-						?>
+                            echo CHtml::dropDownList("to_queue_id", $this->outcome_queue_id, $this->outcome_options, array(
+                                    'id' => 'to_queue_id-' . $this->ticket->id,
+                                    'empty' => ' - Please Select -'));
+                ?>
 					</div>
 					<div class="large-1 column end">
 						<img class="loader" src="<?php echo Yii::app()->assetManager->createUrl('img/ajax-loader.gif')?>" alt="loading..." style="display: none;">
 					</div>
 				</fieldset>
 		<?php
-			}
-			else {
-		?>
+
+            } else {
+                ?>
 				<input type="hidden" name="to_queue_id" value="<?=$this->outcome_queue_id?>" />
 		<?php
-			}
-		?>
+
+            }
+        ?>
 	</div>
 	<div id="PatientTicketing-queue-assignment" data-queue="<?=$this->ticket->current_queue->id?>">
 		<?php
-			if ($this->outcome_queue_id) {
-				$this->widget('OEModule\PatientTicketing\widgets\QueueAssign', array(
-						'queue_id' => $this->outcome_queue_id,
-						'patient_id' => $this->ticket->patient_id,
-						'current_queue_id' => $this->ticket->current_queue->id,
-						'ticket' => $this->ticket
-					));
-			}
-		?>
+            if ($this->outcome_queue_id) {
+                $this->widget('OEModule\PatientTicketing\widgets\QueueAssign', array(
+                        'queue_id' => $this->outcome_queue_id,
+                        'patient_id' => $this->ticket->patient_id,
+                        'current_queue_id' => $this->ticket->current_queue->id,
+                        'ticket' => $this->ticket
+                    ));
+            }
+        ?>
 
 	</div>
 	<div class="alert-box alert hidden"></div>
