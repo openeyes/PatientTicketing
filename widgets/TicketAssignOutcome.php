@@ -23,8 +23,6 @@ use OEModule\PatientTicketing\models;
 
 class TicketAssignOutcome extends BaseTicketAssignment {
 
-	const FOLLOWUP_Q_MIN = 1;
-	const FOLLOWUP_Q_MAX = 12;
 	public $hideFollowUp = true;
 	public $form_data;
 
@@ -56,20 +54,6 @@ class TicketAssignOutcome extends BaseTicketAssignment {
 	public function getAutoSaveData()
 	{
 		return AutoSaveTicket::getFormData($this->ticket->patient_id,$this->ticket->current_queue->id);
-	}
-
-	/**
-	 * Generates array list of follow up values
-	 *
-	 * @return array
-	 */
-	public function getFollowUpQuantityOptions()
-	{
-		$opts = array();
-		for ($i = self::FOLLOWUP_Q_MIN; $i <= self::FOLLOWUP_Q_MAX; $i++) {
-			$opts[(string) $i] = $i;
-		}
-		return $opts;
 	}
 
 	/**
