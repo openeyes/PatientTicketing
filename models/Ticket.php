@@ -227,7 +227,11 @@ class Ticket extends \BaseActiveRecordVersioned
 	 */
 	public function is_complete()
 	{
-		return count($this->current_queue->outcomes) == 0;
+		if(isset($this->current_queue->outcomes)) {
+			return count($this->current_queue->outcomes) == 0;
+		} else {
+			return 0;
+		}
 	}
 
 	/**
