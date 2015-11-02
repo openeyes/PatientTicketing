@@ -8,7 +8,7 @@
 			<div class="data-label"><?= $ticket->getDisplayQueue()->name  . " (" . Helper::convertDate2NHS($ticket->getDisplayQueueAssignment()->assignment_date) . ")" ?></div>
 		</div>
 		<div class="large-6 column left">
-			<div class="data-value"><?= Yii::app()->format->Ntext($display_queue->notes)?></div>
+			<div class="data-value"><?= nl2br($display_queue->notes)?></div>
 		</div>
 	</div>
 	<?php if ($display_queue->report) {?>
